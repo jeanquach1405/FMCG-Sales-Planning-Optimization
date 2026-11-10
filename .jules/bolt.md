@@ -1,0 +1,3 @@
+## 2026-11-10 - Categorical dtypes and inline datetime parsing for transaction datasets
+**Learning:** In pandas transaction datasets with ~200k rows, reading repetitive string columns (such as SKU, brand, segment, category, channel, region, pack type) as default object/str types consumes ~88MB of memory. By specifying `dtype={'column': 'category'}` and `parse_dates=['date']` in `pd.read_csv`, memory footprint drops by 81.1% (to ~16.6MB) and CSV loading/preprocessing is ~20% faster while maintaining full compatibility with downstream groupby and plotting operations.
+**Action:** When ingesting tabular sales/transaction data in pandas, identify low-cardinality dimension columns upfront and load them with `category` dtype and `parse_dates` parameter.

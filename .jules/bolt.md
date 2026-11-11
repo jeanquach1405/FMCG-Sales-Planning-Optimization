@@ -1,0 +1,3 @@
+## 2025-05-18 - Optimized Pandas DataFrame Memory Footprint with Categorical and Downcasted Dtypes
+**Learning:** Loading large tabular datasets (~190,000+ rows) with default pandas dtypes uses 64-bit integers, floats, and Python object strings across all columns, consuming ~88 MB in memory for just 14-18 columns. By specifying categorical types for low-cardinality strings and downcasting bounded numeric columns (int8, int16, float32), in-memory footprint drops by ~89% (~9.3 MB) while preserving exact numerical calculations.
+**Action:** When working with tabular data in pandas notebooks or data pipelines, inspect cardinality and value ranges during data engineering to supply explicit dtype maps on read_csv.
